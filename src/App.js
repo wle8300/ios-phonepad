@@ -5,7 +5,9 @@ import React, {Component} from 'react';
 
 class App extends Component {
   constructor () {
+
     super()
+
     this._audioContext = this.createAudioContext()
     this._animationTime = 150
     this._resizeListener = window.addEventListener('resize', () => {

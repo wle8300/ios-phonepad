@@ -4,8 +4,8 @@ import React, {Component} from 'react';
 
 
 class Button extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       isHover: false,
       isActive: false,
@@ -20,13 +20,23 @@ class Button extends Component {
         onMouseOver={() => this.setState({isHover: true})}
         onMouseOut={() => this.setState({isHover: false, isActive: false})}
         onMouseDown={this.handlePress}
-        onTouchStart={this.handlePress}
         onMouseUp={this.handlePressReset}
+        onTouchStart={this.handlePress}
         onTouchEnd={this.handlePressReset}
         style={this.$3088423514288()}>
         {this.props.children}
       </button>
     )
+  }
+  componentDidMount() {
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === this.props.tone) return this.handlePress()
+    })
+
+    document.addEventListener('keyup', (e) => {
+      if (e.key === this.props.tone) return this.handlePressReset()
+    })
   }
   handlePress = () => {
 
